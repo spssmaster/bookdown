@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>R语言医学绘图教程</title>
+  <meta name="description" content="提供统计分析代做,课程资料购买,联系微信859929351" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="R语言医学绘图教程" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="提供统计分析代做,课程资料购买,联系微信859929351" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R语言医学绘图教程" />
+  
+  <meta name="twitter:description" content="提供统计分析代做,课程资料购买,联系微信859929351" />
+  
+
+<meta name="author" content="大鹏统计" />
+
+
+<meta name="date" content="2022-08-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="条形图barplot-基因邻接点节点数目.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","output/SVG"],
+  extensions: ["tex2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+   src="../../../MathJax/MathJax.js">
+</script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>简介</a></li>
+<li class="chapter" data-level="1" data-path="条形图barplot-基因邻接点节点数目.html"><a href="条形图barplot-基因邻接点节点数目.html"><i class="fa fa-check"></i><b>1</b> 条形图(barplot)-基因邻接点节点数目</a><ul>
+<li class="chapter" data-level="1.1" data-path="条形图barplot-基因邻接点节点数目.html"><a href="条形图barplot-基因邻接点节点数目.html#数据导入"><i class="fa fa-check"></i><b>1.1</b> 数据导入</a></li>
+<li class="chapter" data-level="1.2" data-path="条形图barplot-基因邻接点节点数目.html"><a href="条形图barplot-基因邻接点节点数目.html#数据处理"><i class="fa fa-check"></i><b>1.2</b> 数据处理</a></li>
+<li class="chapter" data-level="1.3" data-path="条形图barplot-基因邻接点节点数目.html"><a href="条形图barplot-基因邻接点节点数目.html#开始绘图"><i class="fa fa-check"></i><b>1.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="条形图barplot-基因显著性条形图.html"><a href="条形图barplot-基因显著性条形图.html"><i class="fa fa-check"></i><b>2</b> 条形图(barplot)-基因显著性条形图</a><ul>
+<li class="chapter" data-level="2.1" data-path="条形图barplot-基因显著性条形图.html"><a href="条形图barplot-基因显著性条形图.html#数据导入-1"><i class="fa fa-check"></i><b>2.1</b> 数据导入</a></li>
+<li class="chapter" data-level="2.2" data-path="条形图barplot-基因显著性条形图.html"><a href="条形图barplot-基因显著性条形图.html#数据处理-1"><i class="fa fa-check"></i><b>2.2</b> 数据处理</a></li>
+<li class="chapter" data-level="2.3" data-path="条形图barplot-基因显著性条形图.html"><a href="条形图barplot-基因显著性条形图.html#开始绘图-1"><i class="fa fa-check"></i><b>2.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="条形图barplot-堆积百分比条形图.html"><a href="条形图barplot-堆积百分比条形图.html"><i class="fa fa-check"></i><b>3</b> 条形图(barplot)-堆积百分比条形图</a><ul>
+<li class="chapter" data-level="3.1" data-path="条形图barplot-堆积百分比条形图.html"><a href="条形图barplot-堆积百分比条形图.html#数据导入-2"><i class="fa fa-check"></i><b>3.1</b> 数据导入</a></li>
+<li class="chapter" data-level="3.2" data-path="条形图barplot-堆积百分比条形图.html"><a href="条形图barplot-堆积百分比条形图.html#数据处理-2"><i class="fa fa-check"></i><b>3.2</b> 数据处理</a></li>
+<li class="chapter" data-level="3.3" data-path="条形图barplot-堆积百分比条形图.html"><a href="条形图barplot-堆积百分比条形图.html#开始绘图-2"><i class="fa fa-check"></i><b>3.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="barplotgroup.html"><a href="barplotgroup.html"><i class="fa fa-check"></i><b>4</b> barplotGroup</a><ul>
+<li class="chapter" data-level="4.1" data-path="barplotgroup.html"><a href="barplotgroup.html#数据导入-3"><i class="fa fa-check"></i><b>4.1</b> 数据导入</a></li>
+<li class="chapter" data-level="4.2" data-path="barplotgroup.html"><a href="barplotgroup.html#开始绘图-3"><i class="fa fa-check"></i><b>4.2</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="boxplotsort.html"><a href="boxplotsort.html"><i class="fa fa-check"></i><b>5</b> boxplotSort</a><ul>
+<li class="chapter" data-level="5.1" data-path="boxplotsort.html"><a href="boxplotsort.html#数据导入-4"><i class="fa fa-check"></i><b>5.1</b> 数据导入</a></li>
+<li class="chapter" data-level="5.2" data-path="boxplotsort.html"><a href="boxplotsort.html#数据处理-3"><i class="fa fa-check"></i><b>5.2</b> 数据处理</a></li>
+<li class="chapter" data-level="5.3" data-path="boxplotsort.html"><a href="boxplotsort.html#开始绘图-4"><i class="fa fa-check"></i><b>5.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="boxplotdiff.html"><a href="boxplotdiff.html"><i class="fa fa-check"></i><b>6</b> boxplotDiff</a><ul>
+<li class="chapter" data-level="6.1" data-path="boxplotdiff.html"><a href="boxplotdiff.html#数据导入-5"><i class="fa fa-check"></i><b>6.1</b> 数据导入</a></li>
+<li class="chapter" data-level="6.2" data-path="boxplotdiff.html"><a href="boxplotdiff.html#数据处理-4"><i class="fa fa-check"></i><b>6.2</b> 数据处理</a></li>
+<li class="chapter" data-level="6.3" data-path="boxplotdiff.html"><a href="boxplotdiff.html#开始绘图-5"><i class="fa fa-check"></i><b>6.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="boxplotmulti.html"><a href="boxplotmulti.html"><i class="fa fa-check"></i><b>7</b> boxplotMulti</a><ul>
+<li class="chapter" data-level="7.1" data-path="boxplotmulti.html"><a href="boxplotmulti.html#数据导入-6"><i class="fa fa-check"></i><b>7.1</b> 数据导入</a></li>
+<li class="chapter" data-level="7.2" data-path="boxplotmulti.html"><a href="boxplotmulti.html#数据处理-5"><i class="fa fa-check"></i><b>7.2</b> 数据处理</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="boxplotclinical.html"><a href="boxplotclinical.html"><i class="fa fa-check"></i><b>8</b> boxplotClinical</a><ul>
+<li class="chapter" data-level="8.1" data-path="boxplotclinical.html"><a href="boxplotclinical.html#数据导入-7"><i class="fa fa-check"></i><b>8.1</b> 数据导入</a></li>
+<li class="chapter" data-level="8.2" data-path="boxplotclinical.html"><a href="boxplotclinical.html#数据处理-6"><i class="fa fa-check"></i><b>8.2</b> 数据处理</a></li>
+<li class="chapter" data-level="8.3" data-path="boxplotclinical.html"><a href="boxplotclinical.html#开始绘图-6"><i class="fa fa-check"></i><b>8.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="boxplotfacet.html"><a href="boxplotfacet.html"><i class="fa fa-check"></i><b>9</b> boxplotFacet</a><ul>
+<li class="chapter" data-level="9.1" data-path="boxplotfacet.html"><a href="boxplotfacet.html#数据导入-8"><i class="fa fa-check"></i><b>9.1</b> 数据导入</a></li>
+<li class="chapter" data-level="9.2" data-path="boxplotfacet.html"><a href="boxplotfacet.html#数据处理-7"><i class="fa fa-check"></i><b>9.2</b> 数据处理</a></li>
+<li class="chapter" data-level="9.3" data-path="boxplotfacet.html"><a href="boxplotfacet.html#开始绘制"><i class="fa fa-check"></i><b>9.3</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="vioplot.html"><a href="vioplot.html"><i class="fa fa-check"></i><b>10</b> vioplot</a><ul>
+<li class="chapter" data-level="10.1" data-path="vioplot.html"><a href="vioplot.html#数据导入-9"><i class="fa fa-check"></i><b>10.1</b> 数据导入</a></li>
+<li class="chapter" data-level="10.2" data-path="vioplot.html"><a href="vioplot.html#数据处理-8"><i class="fa fa-check"></i><b>10.2</b> 数据处理</a></li>
+<li class="chapter" data-level="10.3" data-path="vioplot.html"><a href="vioplot.html#开始绘图-7"><i class="fa fa-check"></i><b>10.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="vioplotmulti.html"><a href="vioplotmulti.html"><i class="fa fa-check"></i><b>11</b> vioplotMulti</a><ul>
+<li class="chapter" data-level="11.1" data-path="vioplotmulti.html"><a href="vioplotmulti.html#数据导入-10"><i class="fa fa-check"></i><b>11.1</b> 数据导入</a></li>
+<li class="chapter" data-level="11.2" data-path="vioplotmulti.html"><a href="vioplotmulti.html#数据处理-9"><i class="fa fa-check"></i><b>11.2</b> 数据处理</a></li>
+<li class="chapter" data-level="11.3" data-path="vioplotmulti.html"><a href="vioplotmulti.html#开始绘图-8"><i class="fa fa-check"></i><b>11.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="vioplotfacet.html"><a href="vioplotfacet.html"><i class="fa fa-check"></i><b>12</b> vioplotFacet</a><ul>
+<li class="chapter" data-level="12.1" data-path="vioplotfacet.html"><a href="vioplotfacet.html#数据导入-11"><i class="fa fa-check"></i><b>12.1</b> 数据导入</a></li>
+<li class="chapter" data-level="12.2" data-path="vioplotfacet.html"><a href="vioplotfacet.html#数据处理-10"><i class="fa fa-check"></i><b>12.2</b> 数据处理</a></li>
+<li class="chapter" data-level="12.3" data-path="vioplotfacet.html"><a href="vioplotfacet.html#开始绘图-9"><i class="fa fa-check"></i><b>12.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="pairdiff.html"><a href="pairdiff.html"><i class="fa fa-check"></i><b>13</b> pairDiff</a><ul>
+<li class="chapter" data-level="13.1" data-path="pairdiff.html"><a href="pairdiff.html#数据导入-12"><i class="fa fa-check"></i><b>13.1</b> 数据导入</a></li>
+<li class="chapter" data-level="13.2" data-path="pairdiff.html"><a href="pairdiff.html#数据处理-11"><i class="fa fa-check"></i><b>13.2</b> 数据处理</a></li>
+<li class="chapter" data-level="13.3" data-path="pairdiff.html"><a href="pairdiff.html#开始绘图-10"><i class="fa fa-check"></i><b>13.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="ggballoonplot.html"><a href="ggballoonplot.html"><i class="fa fa-check"></i><b>14</b> ggballoonplot</a><ul>
+<li class="chapter" data-level="14.1" data-path="ggballoonplot.html"><a href="ggballoonplot.html#数据导入-13"><i class="fa fa-check"></i><b>14.1</b> 数据导入</a></li>
+<li class="chapter" data-level="14.2" data-path="ggballoonplot.html"><a href="ggballoonplot.html#开始绘图-11"><i class="fa fa-check"></i><b>14.2</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="deviation.html"><a href="deviation.html"><i class="fa fa-check"></i><b>15</b> 15Deviation</a><ul>
+<li class="chapter" data-level="15.1" data-path="deviation.html"><a href="deviation.html#数据导入-14"><i class="fa fa-check"></i><b>15.1</b> 数据导入</a></li>
+<li class="chapter" data-level="15.2" data-path="deviation.html"><a href="deviation.html#数据处理-12"><i class="fa fa-check"></i><b>15.2</b> 数据处理</a></li>
+<li class="chapter" data-level="15.3" data-path="deviation.html"><a href="deviation.html#开始绘图-12"><i class="fa fa-check"></i><b>15.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="heatmap.html"><a href="heatmap.html"><i class="fa fa-check"></i><b>16</b> heatmap</a><ul>
+<li class="chapter" data-level="16.1" data-path="heatmap.html"><a href="heatmap.html#数据导入-15"><i class="fa fa-check"></i><b>16.1</b> 数据导入</a></li>
+<li class="chapter" data-level="16.2" data-path="heatmap.html"><a href="heatmap.html#开始绘制-1"><i class="fa fa-check"></i><b>16.2</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="cliheatmap.html"><a href="cliheatmap.html"><i class="fa fa-check"></i><b>17</b> cliHeatmap</a><ul>
+<li class="chapter" data-level="17.1" data-path="cliheatmap.html"><a href="cliheatmap.html#数据导入-16"><i class="fa fa-check"></i><b>17.1</b> 数据导入</a></li>
+<li class="chapter" data-level="17.2" data-path="cliheatmap.html"><a href="cliheatmap.html#数据处理-13"><i class="fa fa-check"></i><b>17.2</b> 数据处理</a></li>
+<li class="chapter" data-level="17.3" data-path="cliheatmap.html"><a href="cliheatmap.html#开始绘图-13"><i class="fa fa-check"></i><b>17.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="vol.html"><a href="vol.html"><i class="fa fa-check"></i><b>18</b> vol</a><ul>
+<li class="chapter" data-level="18.1" data-path="vol.html"><a href="vol.html#数据导入-17"><i class="fa fa-check"></i><b>18.1</b> 数据导入</a></li>
+<li class="chapter" data-level="18.2" data-path="vol.html"><a href="vol.html#数据处理-14"><i class="fa fa-check"></i><b>18.2</b> 数据处理</a></li>
+<li class="chapter" data-level="18.3" data-path="vol.html"><a href="vol.html#开始绘图-14"><i class="fa fa-check"></i><b>18.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="venn.html"><a href="venn.html"><i class="fa fa-check"></i><b>19</b> venn</a><ul>
+<li class="chapter" data-level="19.1" data-path="venn.html"><a href="venn.html#数据导入-18"><i class="fa fa-check"></i><b>19.1</b> 数据导入</a></li>
+<li class="chapter" data-level="19.2" data-path="venn.html"><a href="venn.html#开始绘图-15"><i class="fa fa-check"></i><b>19.2</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="upsetr.html"><a href="upsetr.html"><i class="fa fa-check"></i><b>20</b> UpSetR</a><ul>
+<li class="chapter" data-level="20.1" data-path="upsetr.html"><a href="upsetr.html#数据导入-19"><i class="fa fa-check"></i><b>20.1</b> 数据导入</a></li>
+<li class="chapter" data-level="20.2" data-path="upsetr.html"><a href="upsetr.html#开始绘图-16"><i class="fa fa-check"></i><b>20.2</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="cor.html"><a href="cor.html"><i class="fa fa-check"></i><b>21</b> cor</a><ul>
+<li class="chapter" data-level="21.1" data-path="cor.html"><a href="cor.html#数据导入-20"><i class="fa fa-check"></i><b>21.1</b> 数据导入</a></li>
+<li class="chapter" data-level="21.2" data-path="cor.html"><a href="cor.html#数据处理-15"><i class="fa fa-check"></i><b>21.2</b> 数据处理</a></li>
+<li class="chapter" data-level="21.3" data-path="cor.html"><a href="cor.html#开始绘图-17"><i class="fa fa-check"></i><b>21.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="corrplot.html"><a href="corrplot.html"><i class="fa fa-check"></i><b>22</b> corrplot</a><ul>
+<li class="chapter" data-level="22.1" data-path="corrplot.html"><a href="corrplot.html#数据导入-21"><i class="fa fa-check"></i><b>22.1</b> 数据导入</a></li>
+<li class="chapter" data-level="22.2" data-path="corrplot.html"><a href="corrplot.html#数据处理-16"><i class="fa fa-check"></i><b>22.2</b> 数据处理</a></li>
+<li class="chapter" data-level="22.3" data-path="corrplot.html"><a href="corrplot.html#开始绘图-18"><i class="fa fa-check"></i><b>22.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="corcircos.html"><a href="corcircos.html"><i class="fa fa-check"></i><b>23</b> corCircos</a><ul>
+<li class="chapter" data-level="23.1" data-path="corcircos.html"><a href="corcircos.html#数据导入-22"><i class="fa fa-check"></i><b>23.1</b> 数据导入</a></li>
+<li class="chapter" data-level="23.2" data-path="corcircos.html"><a href="corcircos.html#数据处理-17"><i class="fa fa-check"></i><b>23.2</b> 数据处理</a></li>
+<li class="chapter" data-level="23.3" data-path="corcircos.html"><a href="corcircos.html#开始绘制-2"><i class="fa fa-check"></i><b>23.3</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="cornetwork.html"><a href="cornetwork.html"><i class="fa fa-check"></i><b>24</b> corNetwork</a><ul>
+<li class="chapter" data-level="24.1" data-path="cornetwork.html"><a href="cornetwork.html#数据导入-23"><i class="fa fa-check"></i><b>24.1</b> 数据导入</a></li>
+<li class="chapter" data-level="24.2" data-path="cornetwork.html"><a href="cornetwork.html#数据处理-18"><i class="fa fa-check"></i><b>24.2</b> 数据处理</a></li>
+<li class="chapter" data-level="24.3" data-path="cornetwork.html"><a href="cornetwork.html#进一步定义"><i class="fa fa-check"></i><b>24.3</b> 进一步定义</a></li>
+<li class="chapter" data-level="24.4" data-path="cornetwork.html"><a href="cornetwork.html#开始绘图-19"><i class="fa fa-check"></i><b>24.4</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="radar.html"><a href="radar.html"><i class="fa fa-check"></i><b>25</b> radar</a><ul>
+<li class="chapter" data-level="25.1" data-path="radar.html"><a href="radar.html#数据导入-24"><i class="fa fa-check"></i><b>25.1</b> 数据导入</a></li>
+<li class="chapter" data-level="25.2" data-path="radar.html"><a href="radar.html#数据处理-19"><i class="fa fa-check"></i><b>25.2</b> 数据处理</a></li>
+<li class="chapter" data-level="25.3" data-path="radar.html"><a href="radar.html#开始绘图-20"><i class="fa fa-check"></i><b>25.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="ggalluvial.html"><a href="ggalluvial.html"><i class="fa fa-check"></i><b>26</b> ggalluvial</a><ul>
+<li class="chapter" data-level="26.1" data-path="ggalluvial.html"><a href="ggalluvial.html#数据导入-25"><i class="fa fa-check"></i><b>26.1</b> 数据导入</a></li>
+<li class="chapter" data-level="26.2" data-path="ggalluvial.html"><a href="ggalluvial.html#数据处理-20"><i class="fa fa-check"></i><b>26.2</b> 数据处理</a></li>
+<li class="chapter" data-level="26.3" data-path="ggalluvial.html"><a href="ggalluvial.html#开始绘图-21"><i class="fa fa-check"></i><b>26.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="pie.html"><a href="pie.html"><i class="fa fa-check"></i><b>27</b> pie</a><ul>
+<li class="chapter" data-level="27.1" data-path="pie.html"><a href="pie.html#数据导入-26"><i class="fa fa-check"></i><b>27.1</b> 数据导入</a></li>
+<li class="chapter" data-level="27.2" data-path="pie.html"><a href="pie.html#数据处理-21"><i class="fa fa-check"></i><b>27.2</b> 数据处理</a></li>
+<li class="chapter" data-level="27.3" data-path="pie.html"><a href="pie.html#开始绘图-22"><i class="fa fa-check"></i><b>27.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="bubble.html"><a href="bubble.html"><i class="fa fa-check"></i><b>28</b> bubble</a><ul>
+<li class="chapter" data-level="28.1" data-path="bubble.html"><a href="bubble.html#数据导入-27"><i class="fa fa-check"></i><b>28.1</b> 数据导入</a></li>
+<li class="chapter" data-level="28.2" data-path="bubble.html"><a href="bubble.html#数据处理-22"><i class="fa fa-check"></i><b>28.2</b> 数据处理</a></li>
+<li class="chapter" data-level="28.3" data-path="bubble.html"><a href="bubble.html#开始绘制-3"><i class="fa fa-check"></i><b>28.3</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="lollipop.html"><a href="lollipop.html"><i class="fa fa-check"></i><b>29</b> Lollipop</a><ul>
+<li class="chapter" data-level="29.1" data-path="lollipop.html"><a href="lollipop.html#数据导入-28"><i class="fa fa-check"></i><b>29.1</b> 数据导入</a></li>
+<li class="chapter" data-level="29.2" data-path="lollipop.html"><a href="lollipop.html#开始绘图-23"><i class="fa fa-check"></i><b>29.2</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="gocircos.html"><a href="gocircos.html"><i class="fa fa-check"></i><b>30</b> GOcircos</a><ul>
+<li class="chapter" data-level="30.1" data-path="gocircos.html"><a href="gocircos.html#数据导入-29"><i class="fa fa-check"></i><b>30.1</b> 数据导入</a></li>
+<li class="chapter" data-level="30.2" data-path="gocircos.html"><a href="gocircos.html#加载r包"><i class="fa fa-check"></i><b>30.2</b> 加载R包</a></li>
+<li class="chapter" data-level="30.3" data-path="gocircos.html"><a href="gocircos.html#数据处理-过滤"><i class="fa fa-check"></i><b>30.3</b> 数据处理-过滤</a></li>
+<li class="chapter" data-level="30.4" data-path="gocircos.html"><a href="gocircos.html#go"><i class="fa fa-check"></i><b>30.4</b> GO</a></li>
+<li class="chapter" data-level="30.5" data-path="gocircos.html"><a href="gocircos.html#开始绘图-24"><i class="fa fa-check"></i><b>30.5</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="keggcircos.html"><a href="keggcircos.html"><i class="fa fa-check"></i><b>31</b> KEGGcircos</a><ul>
+<li class="chapter" data-level="31.1" data-path="keggcircos.html"><a href="keggcircos.html#数据导入-30"><i class="fa fa-check"></i><b>31.1</b> 数据导入</a></li>
+<li class="chapter" data-level="31.2" data-path="keggcircos.html"><a href="keggcircos.html#加载r包-1"><i class="fa fa-check"></i><b>31.2</b> 加载R包</a></li>
+<li class="chapter" data-level="31.3" data-path="keggcircos.html"><a href="keggcircos.html#数据处理-过滤-1"><i class="fa fa-check"></i><b>31.3</b> 数据处理-过滤</a></li>
+<li class="chapter" data-level="31.4" data-path="keggcircos.html"><a href="keggcircos.html#kegg富集分析"><i class="fa fa-check"></i><b>31.4</b> KEGG富集分析</a></li>
+<li class="chapter" data-level="31.5" data-path="keggcircos.html"><a href="keggcircos.html#获取kegg信息"><i class="fa fa-check"></i><b>31.5</b> 获取KEGG信息</a></li>
+<li class="chapter" data-level="31.6" data-path="keggcircos.html"><a href="keggcircos.html#开始绘图-25"><i class="fa fa-check"></i><b>31.6</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="multigsea.html"><a href="multigsea.html"><i class="fa fa-check"></i><b>32</b> multiGSEA</a><ul>
+<li class="chapter" data-level="32.1" data-path="multigsea.html"><a href="multigsea.html#数据导入-31"><i class="fa fa-check"></i><b>32.1</b> 数据导入</a></li>
+<li class="chapter" data-level="32.2" data-path="multigsea.html"><a href="multigsea.html#开始绘图-26"><i class="fa fa-check"></i><b>32.2</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="survivaldiscrete.html"><a href="survivaldiscrete.html"><i class="fa fa-check"></i><b>33</b> survivalDiscrete</a><ul>
+<li class="chapter" data-level="33.1" data-path="survivaldiscrete.html"><a href="survivaldiscrete.html#数据导入-32"><i class="fa fa-check"></i><b>33.1</b> 数据导入</a></li>
+<li class="chapter" data-level="33.2" data-path="survivaldiscrete.html"><a href="survivaldiscrete.html#数据处理-23"><i class="fa fa-check"></i><b>33.2</b> 数据处理</a></li>
+<li class="chapter" data-level="33.3" data-path="survivaldiscrete.html"><a href="survivaldiscrete.html#开始绘制-4"><i class="fa fa-check"></i><b>33.3</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="survivalcontinuous.html"><a href="survivalcontinuous.html"><i class="fa fa-check"></i><b>34</b> survivalContinuous</a><ul>
+<li class="chapter" data-level="34.1" data-path="survivalcontinuous.html"><a href="survivalcontinuous.html#数据导入-33"><i class="fa fa-check"></i><b>34.1</b> 数据导入</a></li>
+<li class="chapter" data-level="34.2" data-path="survivalcontinuous.html"><a href="survivalcontinuous.html#数据处理-24"><i class="fa fa-check"></i><b>34.2</b> 数据处理</a></li>
+<li class="chapter" data-level="34.3" data-path="survivalcontinuous.html"><a href="survivalcontinuous.html#开始绘制-5"><i class="fa fa-check"></i><b>34.3</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="survivalcutoff.html"><a href="survivalcutoff.html"><i class="fa fa-check"></i><b>35</b> survivalCutoff</a><ul>
+<li class="chapter" data-level="35.1" data-path="survivalcutoff.html"><a href="survivalcutoff.html#数据导入-34"><i class="fa fa-check"></i><b>35.1</b> 数据导入</a></li>
+<li class="chapter" data-level="35.2" data-path="survivalcutoff.html"><a href="survivalcutoff.html#数据处理-25"><i class="fa fa-check"></i><b>35.2</b> 数据处理</a></li>
+<li class="chapter" data-level="35.3" data-path="survivalcutoff.html"><a href="survivalcutoff.html#开始绘制-6"><i class="fa fa-check"></i><b>35.3</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="survival2vars.html"><a href="survival2vars.html"><i class="fa fa-check"></i><b>36</b> survival2vars</a><ul>
+<li class="chapter" data-level="36.1" data-path="survival2vars.html"><a href="survival2vars.html#数据导入-35"><i class="fa fa-check"></i><b>36.1</b> 数据导入</a></li>
+<li class="chapter" data-level="36.2" data-path="survival2vars.html"><a href="survival2vars.html#数据处理-26"><i class="fa fa-check"></i><b>36.2</b> 数据处理</a></li>
+<li class="chapter" data-level="36.3" data-path="survival2vars.html"><a href="survival2vars.html#开始绘制-7"><i class="fa fa-check"></i><b>36.3</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="forest.html"><a href="forest.html"><i class="fa fa-check"></i><b>37</b> forest</a><ul>
+<li class="chapter" data-level="37.1" data-path="forest.html"><a href="forest.html#数据导入-36"><i class="fa fa-check"></i><b>37.1</b> 数据导入</a></li>
+<li class="chapter" data-level="37.2" data-path="forest.html"><a href="forest.html#数据处理-27"><i class="fa fa-check"></i><b>37.2</b> 数据处理</a></li>
+<li class="chapter" data-level="37.3" data-path="forest.html"><a href="forest.html#开始绘图-27"><i class="fa fa-check"></i><b>37.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="nomo.html"><a href="nomo.html"><i class="fa fa-check"></i><b>38</b> Nomo</a><ul>
+<li class="chapter" data-level="38.1" data-path="nomo.html"><a href="nomo.html#数据导入-37"><i class="fa fa-check"></i><b>38.1</b> 数据导入</a></li>
+<li class="chapter" data-level="38.2" data-path="nomo.html"><a href="nomo.html#数据处理-28"><i class="fa fa-check"></i><b>38.2</b> 数据处理</a></li>
+<li class="chapter" data-level="38.3" data-path="nomo.html"><a href="nomo.html#开始绘图-28"><i class="fa fa-check"></i><b>38.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="roc.html"><a href="roc.html"><i class="fa fa-check"></i><b>39</b> ROC</a><ul>
+<li class="chapter" data-level="39.1" data-path="roc.html"><a href="roc.html#数据导入-38"><i class="fa fa-check"></i><b>39.1</b> 数据导入</a></li>
+<li class="chapter" data-level="39.2" data-path="roc.html"><a href="roc.html#开始绘制-8"><i class="fa fa-check"></i><b>39.2</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="multivarroc.html"><a href="multivarroc.html"><i class="fa fa-check"></i><b>40</b> multiVarROC</a><ul>
+<li class="chapter" data-level="40.1" data-path="multivarroc.html"><a href="multivarroc.html#数据导入-39"><i class="fa fa-check"></i><b>40.1</b> 数据导入</a></li>
+<li class="chapter" data-level="40.2" data-path="multivarroc.html"><a href="multivarroc.html#开始绘图-29"><i class="fa fa-check"></i><b>40.2</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="41" data-path="timeroc.html"><a href="timeroc.html"><i class="fa fa-check"></i><b>41</b> timeROC</a><ul>
+<li class="chapter" data-level="41.1" data-path="timeroc.html"><a href="timeroc.html#数据导入-40"><i class="fa fa-check"></i><b>41.1</b> 数据导入</a></li>
+<li class="chapter" data-level="41.2" data-path="timeroc.html"><a href="timeroc.html#开始绘制-9"><i class="fa fa-check"></i><b>41.2</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="multitimeroc.html"><a href="multitimeroc.html"><i class="fa fa-check"></i><b>42</b> multiTimeROC</a><ul>
+<li class="chapter" data-level="42.1" data-path="multitimeroc.html"><a href="multitimeroc.html#数据导入-41"><i class="fa fa-check"></i><b>42.1</b> 数据导入</a></li>
+<li class="chapter" data-level="42.2" data-path="multitimeroc.html"><a href="multitimeroc.html#开始绘制-10"><i class="fa fa-check"></i><b>42.2</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="43" data-path="multivartimeroc.html"><a href="multivartimeroc.html"><i class="fa fa-check"></i><b>43</b> multiVarTimeROC</a><ul>
+<li class="chapter" data-level="43.1" data-path="multivartimeroc.html"><a href="multivartimeroc.html#数据导入-42"><i class="fa fa-check"></i><b>43.1</b> 数据导入</a></li>
+<li class="chapter" data-level="43.2" data-path="multivartimeroc.html"><a href="multivartimeroc.html#开始绘制-11"><i class="fa fa-check"></i><b>43.2</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="44" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>44</b> PCA</a><ul>
+<li class="chapter" data-level="44.1" data-path="pca.html"><a href="pca.html#数据导入-43"><i class="fa fa-check"></i><b>44.1</b> 数据导入</a></li>
+<li class="chapter" data-level="44.2" data-path="pca.html"><a href="pca.html#数据处理-29"><i class="fa fa-check"></i><b>44.2</b> 数据处理</a></li>
+<li class="chapter" data-level="44.3" data-path="pca.html"><a href="pca.html#开始绘图-30"><i class="fa fa-check"></i><b>44.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="45" data-path="pca3d.html"><a href="pca3d.html"><i class="fa fa-check"></i><b>45</b> PCA3d</a><ul>
+<li class="chapter" data-level="45.1" data-path="pca3d.html"><a href="pca3d.html#数据导入-44"><i class="fa fa-check"></i><b>45.1</b> 数据导入</a></li>
+<li class="chapter" data-level="45.2" data-path="pca3d.html"><a href="pca3d.html#数据处理-30"><i class="fa fa-check"></i><b>45.2</b> 数据处理</a></li>
+<li class="chapter" data-level="45.3" data-path="pca3d.html"><a href="pca3d.html#开始绘图-31"><i class="fa fa-check"></i><b>45.3</b> 开始绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="46" data-path="circos.html"><a href="circos.html"><i class="fa fa-check"></i><b>46</b> circos</a><ul>
+<li class="chapter" data-level="46.1" data-path="circos.html"><a href="circos.html#数据导入-45"><i class="fa fa-check"></i><b>46.1</b> 数据导入</a></li>
+<li class="chapter" data-level="46.2" data-path="circos.html"><a href="circos.html#开始绘制-12"><i class="fa fa-check"></i><b>46.2</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="47" data-path="genome.html"><a href="genome.html"><i class="fa fa-check"></i><b>47</b> genome</a><ul>
+<li class="chapter" data-level="47.1" data-path="genome.html"><a href="genome.html#数据导入-46"><i class="fa fa-check"></i><b>47.1</b> 数据导入</a></li>
+<li class="chapter" data-level="47.2" data-path="genome.html"><a href="genome.html#数据处理-31"><i class="fa fa-check"></i><b>47.2</b> 数据处理</a></li>
+<li class="chapter" data-level="47.3" data-path="genome.html"><a href="genome.html#开始绘制-13"><i class="fa fa-check"></i><b>47.3</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="48" data-path="ggtree.html"><a href="ggtree.html"><i class="fa fa-check"></i><b>48</b> ggtree</a><ul>
+<li class="chapter" data-level="48.1" data-path="ggtree.html"><a href="ggtree.html#加载r包-2"><i class="fa fa-check"></i><b>48.1</b> 加载R包</a></li>
+<li class="chapter" data-level="48.2" data-path="ggtree.html"><a href="ggtree.html#数据导入-47"><i class="fa fa-check"></i><b>48.2</b> 数据导入</a></li>
+<li class="chapter" data-level="48.3" data-path="ggtree.html"><a href="ggtree.html#开始绘制-14"><i class="fa fa-check"></i><b>48.3</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="49" data-path="waterfall.html"><a href="waterfall.html"><i class="fa fa-check"></i><b>49</b> waterfall</a><ul>
+<li class="chapter" data-level="49.1" data-path="waterfall.html"><a href="waterfall.html#数据导入-48"><i class="fa fa-check"></i><b>49.1</b> 数据导入</a></li>
+<li class="chapter" data-level="49.2" data-path="waterfall.html"><a href="waterfall.html#开始绘制-15"><i class="fa fa-check"></i><b>49.2</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="50" data-path="gganatogram.html"><a href="gganatogram.html"><i class="fa fa-check"></i><b>50</b> gganatogram</a><ul>
+<li class="chapter" data-level="50.1" data-path="gganatogram.html"><a href="gganatogram.html#数据导入-49"><i class="fa fa-check"></i><b>50.1</b> 数据导入</a></li>
+<li class="chapter" data-level="50.2" data-path="gganatogram.html"><a href="gganatogram.html#开始绘制-16"><i class="fa fa-check"></i><b>50.2</b> 开始绘制</a></li>
+</ul></li>
+<li class="chapter" data-level="51" data-path="更多课程.html"><a href="更多课程.html"><i class="fa fa-check"></i><b>51</b> 更多课程</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R语言医学绘图教程</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">R语言医学绘图教程</h1>
+<p class="author"><em>大鹏统计</em></p>
+<p class="date"><em>2022-08-22</em></p>
+</div>
+<div id="简介" class="section level1 unnumbered hasAnchor">
+<h1>简介<a href="index.html#简介" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>提供统计分析代做,课程资料购买,联系微信859929351</strong></p>
+<p><strong>本人微信二维码见下</strong>
+<img src="wechat.jpg" width="30%" style="display: block; margin: auto;" /></p>
+<p><strong>本教程数据及代码收集自网络,分享至朋友圈,集10赞,关注公众号spss1949,回复20220813,免费获得资料</strong></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="条形图barplot-基因邻接点节点数目.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CBook.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
